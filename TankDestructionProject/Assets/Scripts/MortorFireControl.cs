@@ -19,7 +19,8 @@ public class MortorFireControl : MonoBehaviour {
     Transform fireTransform;
     [SerializeField]
     float launchForce = 150f;
-
+    [SerializeField]
+    float fallVelocity = 25f;
     // Update is called once per frame
     void Update () {
         if (Input.GetButtonDown("Fire2"))
@@ -75,7 +76,7 @@ public class MortorFireControl : MonoBehaviour {
     }
 
     private void Fire() {
-        Rigidbody newShell = GameObject.Instantiate(shellRigidbody, fireTransform.position, fireTransform.rotation) as Rigidbody;
-        newShell.velocity = launchForce * fireTransform.forward;
+        Rigidbody newShell = GameObject.Instantiate(shellRigidbody, new Vector3(targetTransform.position.x, targetTransform.position.y + 10, targetTransform.position.z), targetTransform.rotation) as Rigidbody;
+        //newShell.velocity = launchForce * new Vector3(0,fallVelocity,0);
     }
 }
