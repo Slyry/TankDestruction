@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 878cc6a36f07fef4ea7b407e3118f5ba
-timeCreated: 1486715110
-licenseType: Free
+guid: ab943d3d5ac38bb448fabe3cdc9516d1
+timeCreated: 1441879718
+licenseType: Store
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Aim Arrow_0
-    21300002: Aim Arrow_1
-    21300004: Aim Arrow_2
-    21300006: Aim Arrow_3
+    21300000: Aim Arrow
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -21,13 +18,13 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: 0.25
+    heightScale: .25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 7
+  cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
@@ -46,69 +43,24 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    serializedVersion: 2
     sprites:
-    - serializedVersion: 2
-      name: Aim Arrow_0
+    - name: Aim Arrow
       rect:
         serializedVersion: 2
         x: 0
-        y: 131
-        width: 125
-        height: 125
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Aim Arrow_1
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 131
-        width: 125
-        height: 125
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Aim Arrow_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 3
-        width: 125
-        height: 125
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Aim Arrow_3
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 3
-        width: 125
-        height: 125
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    outline: []
+      pivot: {x: .5, y: .5}
+      border: {x: 127, y: 130, z: 125, w: 124}
   spritePackingTag: 
   userData: 
   assetBundleName: 
