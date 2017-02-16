@@ -12,6 +12,10 @@ CGINCLUDE
 
 uniform sampler2D _MainTex;
 uniform float4 _MainTex_TexelSize;
+<<<<<<< HEAD
+=======
+half4 _MainTex_ST;
+>>>>>>> master
 uniform float _OffsetScale;
 uniform float _BlurRadius;
 
@@ -46,6 +50,7 @@ struct v2f {
 	{	
 		// get luminance values
 		//  maybe: experiment with different luminance calculations
+<<<<<<< HEAD
 		float topL = Luminance( tex2D(_MainTex, i.uv[0]).rgb );
 		float bottomL = Luminance( tex2D(_MainTex, i.uv[1]).rgb );
 		float rightL = Luminance( tex2D(_MainTex, i.uv[2]).rgb );
@@ -54,6 +59,16 @@ struct v2f {
 		float leftBottomL = Luminance( tex2D(_MainTex, i.uv[5]).rgb );
 		float rightBottomL = Luminance( tex2D(_MainTex, i.uv[6]).rgb );
 		float rightTopL = Luminance( tex2D(_MainTex, i.uv[7]).rgb );
+=======
+		float topL = Luminance( tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv[0], _MainTex_ST)).rgb );
+		float bottomL = Luminance( tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv[1], _MainTex_ST)).rgb );
+		float rightL = Luminance( tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv[2], _MainTex_ST)).rgb );
+		float leftL = Luminance( tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv[3], _MainTex_ST)).rgb );
+		float leftTopL = Luminance( tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv[4], _MainTex_ST)).rgb );
+		float leftBottomL = Luminance( tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv[5], _MainTex_ST)).rgb );
+		float rightBottomL = Luminance( tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv[6], _MainTex_ST)).rgb );
+		float rightTopL = Luminance( tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv[7], _MainTex_ST)).rgb );
+>>>>>>> master
 		
 		// 2 triangle subtractions
 		float sum0 = dot(float3(1,1,1), float3(rightTopL,bottomL,leftTopL));
@@ -68,11 +83,19 @@ struct v2f {
 		// reconstruct normal uv
 		float2 uv_ = (i.uv[0] + i.uv[1]) * 0.5;
 		 
+<<<<<<< HEAD
 		float4 returnColor = tex2D(_MainTex, uv_);
 		returnColor += tex2D(_MainTex, uv_+ blurDir.xy);
 		returnColor += tex2D(_MainTex, uv_ - blurDir.xy);
 		returnColor += tex2D(_MainTex, uv_ + float2(blurDir.x, -blurDir.y));
 		returnColor += tex2D(_MainTex, uv_ - float2(blurDir.x, -blurDir.y));
+=======
+		float4 returnColor = tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(uv_, _MainTex_ST));
+		returnColor += tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(uv_+ blurDir.xy, _MainTex_ST));
+		returnColor += tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(uv_ - blurDir.xy, _MainTex_ST));
+		returnColor += tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(uv_ + float2(blurDir.x, -blurDir.y), _MainTex_ST));
+		returnColor += tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(uv_ - float2(blurDir.x, -blurDir.y), _MainTex_ST));
+>>>>>>> master
 
 		return returnColor * 0.2;
 	}
@@ -81,6 +104,7 @@ struct v2f {
 	{	
 		// get luminance values
 		//  maybe: experiment with different luminance calculations
+<<<<<<< HEAD
 		float topL = Luminance( tex2D(_MainTex, i.uv[0]).rgb );
 		float bottomL = Luminance( tex2D(_MainTex, i.uv[1]).rgb );
 		float rightL = Luminance( tex2D(_MainTex, i.uv[2]).rgb );
@@ -89,6 +113,16 @@ struct v2f {
 		float leftBottomL = Luminance( tex2D(_MainTex, i.uv[5]).rgb );
 		float rightBottomL = Luminance( tex2D(_MainTex, i.uv[6]).rgb );
 		float rightTopL = Luminance( tex2D(_MainTex, i.uv[7]).rgb );
+=======
+		float topL = Luminance( tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv[0], _MainTex_ST)).rgb );
+		float bottomL = Luminance( tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv[1], _MainTex_ST)).rgb );
+		float rightL = Luminance( tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv[2], _MainTex_ST)).rgb );
+		float leftL = Luminance( tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv[3], _MainTex_ST)).rgb );
+		float leftTopL = Luminance( tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv[4], _MainTex_ST)).rgb );
+		float leftBottomL = Luminance( tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv[5], _MainTex_ST)).rgb );
+		float rightBottomL = Luminance( tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv[6], _MainTex_ST)).rgb );
+		float rightTopL = Luminance( tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv[7], _MainTex_ST)).rgb );
+>>>>>>> master
 		
 		// 2 triangle subtractions
 		float sum0 = dot(float3(1,1,1), float3(rightTopL,bottomL,leftTopL));
@@ -103,11 +137,19 @@ struct v2f {
 		// reconstruct normal uv
 		float2 uv_ = (i.uv[0] + i.uv[1]) * 0.5;
 		 
+<<<<<<< HEAD
 		float4 returnColor = tex2D(_MainTex, uv_);
 		returnColor += tex2D(_MainTex, uv_+ blurDir.xy);
 		returnColor += tex2D(_MainTex, uv_ - blurDir.xy);
 		returnColor += tex2D(_MainTex, uv_ + float2(blurDir.x, -blurDir.y));
 		returnColor += tex2D(_MainTex, uv_ - float2(blurDir.x, -blurDir.y));
+=======
+		float4 returnColor = tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(uv_, _MainTex_ST));
+		returnColor += tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(uv_+ blurDir.xy, _MainTex_ST));
+		returnColor += tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(uv_ - blurDir.xy, _MainTex_ST));
+		returnColor += tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(uv_ + float2(blurDir.x, -blurDir.y), _MainTex_ST));
+		returnColor += tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(uv_ - float2(blurDir.x, -blurDir.y), _MainTex_ST));
+>>>>>>> master
 
 		blurDir = half2((sum0-sum1), (sum3-sum2)) * _BlurRadius;
 		return half4(normalize( half3(blurDir,1) * 0.5 + 0.5), 1);

@@ -37,6 +37,12 @@ Shader "Hidden/Dof/DX11Dof"
 	sampler2D _MainTex;
 	sampler2D _FgCocMask;
 
+<<<<<<< HEAD
+=======
+	half4 _MainTex_ST;
+	
+
+>>>>>>> master
 	struct appendStruct {
 		float3 pos;
 		float4 color;
@@ -61,7 +67,10 @@ Shader "Hidden/Dof/DX11Dof"
 
 	struct vs_out {
 		float4 pos : SV_POSITION;
+<<<<<<< HEAD
 		float2 uv : TEXCOORD0;
+=======
+>>>>>>> master
 		float4 color : TEXCOORD1;
 		float cocOverlap : TEXCOORD2;
 	};
@@ -160,8 +169,13 @@ Pass
 	{
 		v2f o;
 		o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+<<<<<<< HEAD
 		o.uv = v.texcoord;
 		o.uv_flip = v.texcoord;
+=======
+		o.uv = UnityStereoScreenSpaceUVAdjust(v.texcoord, _MainTex_ST);
+		o.uv_flip = UnityStereoScreenSpaceUVAdjust(v.texcoord, _MainTex_ST);
+>>>>>>> master
 		#if UNITY_UV_STARTS_AT_TOP
 		if(_MainTex_TexelSize.y<0)		
 			o.uv_flip.y = 1.0-o.uv_flip.y;
@@ -217,7 +231,11 @@ Pass {
 
 	fixed4 frag (gs_out i) : SV_Target
 	{
+<<<<<<< HEAD
 		float2 uv = (i.uv.xy) * i.misc.xy + (float2(1,1)-i.misc.xy) * 0.5;	// smooth uv scale
+=======
+		float2 uv = UnityStereoScreenSpaceUVAdjust((i.uv.xy) * i.misc.xy + (float2(1,1)-i.misc.xy) * 0.5, _MainTex_ST);	// smooth uv scale
+>>>>>>> master
 		return float4(i.color.rgb, 1) * float4(tex2D(_MainTex, uv.xy).rgb, i.uv.z) * clampBorderColor (uv);
 	}
 
@@ -244,7 +262,11 @@ Pass {
 
 	fixed4 frag (gs_out i) : SV_Target
 	{
+<<<<<<< HEAD
 		float2 uv = (i.uv.xy) * i.misc.xy + (float2(1,1)-i.misc.xy) * 0.5;	// smooth uv scale
+=======
+		float2 uv = UnityStereoScreenSpaceUVAdjust((i.uv.xy) * i.misc.xy + (float2(1,1)-i.misc.xy) * 0.5, _MainTex_ST);	// smooth uv scale
+>>>>>>> master
 		return float4(i.color.rgb, 1) * float4(tex2D(_MainTex, uv.xy).rgb, i.uv.z) * clampBorderColor (uv);
 	}
 

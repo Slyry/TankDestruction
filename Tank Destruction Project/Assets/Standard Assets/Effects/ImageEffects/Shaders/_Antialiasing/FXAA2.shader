@@ -74,8 +74,13 @@ CGPROGRAM
     #define FxaaFloat2 float2
     #define FxaaSat(a) saturate((a))
     #define FxaaTex sampler2D
+<<<<<<< HEAD
     #define FxaaTexLod0(t, p) tex2Dlod(t, float4(p, 0.0, 0.0))
     #define FxaaTexOff(t, p, o, r) tex2Dlod(t, float4(p + (o * r), 0, 0))
+=======
+    #define FxaaTexLod0(t, p) tex2Dlod(t, float4(UnityStereoScreenSpaceUVAdjust(p, _MainTex_ST), 0.0, 0.0))
+    #define FxaaTexOff(t, p, o, r) tex2Dlod(t, float4(UnityStereoScreenSpaceUVAdjust(p + (o * r), _MainTex_ST), 0, 0))
+>>>>>>> master
 #endif
 /*--------------------------------------------------------------------------*/
 #if FXAA_HLSL_4
@@ -83,8 +88,13 @@ CGPROGRAM
     #define FxaaFloat2 float2
     #define FxaaSat(a) saturate((a))
     struct FxaaTex { SamplerState smpl; Texture2D tex; };
+<<<<<<< HEAD
     #define FxaaTexLod0(t, p) t.tex.SampleLevel(t.smpl, p, 0.0) 
     #define FxaaTexOff(t, p, o, r) t.tex.SampleLevel(t.smpl, p, 0.0, o)
+=======
+    #define FxaaTexLod0(t, p) t.tex.SampleLevel(t.smpl, UnityStereoScreenSpaceUVAdjust(p, _MainTex_ST), 0.0) 
+    #define FxaaTexOff(t, p, o, r) t.tex.SampleLevel(t.smpl, UnityStereoScreenSpaceUVAdjust(p, _MainTex_ST), 0.0, o)
+>>>>>>> master
 #endif
 
 
@@ -109,6 +119,11 @@ float2 rcpFrame) {          // {1.0/frameWidth, 1.0/frameHeight}
                                 PIXEL SHADER
                                 
 ============================================================================*/
+<<<<<<< HEAD
+=======
+half4 _MainTex_ST;
+
+>>>>>>> master
 float3 FxaaPixelShader(
 float4 posPos,       // Output of FxaaVertexShader interpolated across screen.
 FxaaTex tex,         // Input texture.

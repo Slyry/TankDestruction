@@ -14,7 +14,14 @@ Shader "Hidden/BlendModesOverlay" {
 	};
 			
 	sampler2D _Overlay;
+<<<<<<< HEAD
 	sampler2D _MainTex;
+=======
+	half4 _Overlay_ST;
+
+	sampler2D _MainTex;
+	half4 _MainTex_ST;
+>>>>>>> master
 	
 	half _Intensity;
 	half4 _MainTex_TexelSize;
@@ -24,17 +31,28 @@ Shader "Hidden/BlendModesOverlay" {
 		v2f o;
 		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
 		
+<<<<<<< HEAD
 		o.uv[0] = float2(
 			dot(v.texcoord.xy, _UV_Transform.xy),
 			dot(v.texcoord.xy, _UV_Transform.zw)
 		);
+=======
+		o.uv[0] = UnityStereoScreenSpaceUVAdjust(float2(
+			dot(v.texcoord.xy, _UV_Transform.xy),
+			dot(v.texcoord.xy, _UV_Transform.zw)
+		), _Overlay_ST);
+>>>>>>> master
 		
 		#if UNITY_UV_STARTS_AT_TOP
 		if(_MainTex_TexelSize.y<0.0)
 			o.uv[0].y = 1.0-o.uv[0].y;
 		#endif
 		
+<<<<<<< HEAD
 		o.uv[1] =  v.texcoord.xy;	
+=======
+		o.uv[1] = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy, _MainTex_ST);
+>>>>>>> master
 		return o;
 	}
 	

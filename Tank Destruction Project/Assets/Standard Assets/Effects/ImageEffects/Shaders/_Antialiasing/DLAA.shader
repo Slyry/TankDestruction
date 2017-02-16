@@ -17,13 +17,21 @@ CGINCLUDE
 
 	uniform sampler2D _MainTex;
 	uniform float4 _MainTex_TexelSize;
+<<<<<<< HEAD
+=======
+	half4 _MainTex_ST;
+>>>>>>> master
 
 	struct v2f {
 		float4 pos : SV_POSITION;
 		float2 uv : TEXCOORD0;
 	};
 	
+<<<<<<< HEAD
 	#define LD( o, dx, dy ) o = tex2D( _MainTex, texCoord + float2( dx, dy ) * _MainTex_TexelSize.xy );
+=======
+	#define LD( o, dx, dy ) o = tex2D( _MainTex, UnityStereoScreenSpaceUVAdjust(texCoord + float2( dx, dy ) * _MainTex_TexelSize.xy, _MainTex_ST) );
+>>>>>>> master
 	
 	float GetIntensity( float3 col )
 	{

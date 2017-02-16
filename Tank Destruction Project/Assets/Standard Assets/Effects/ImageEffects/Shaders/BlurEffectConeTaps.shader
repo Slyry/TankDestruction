@@ -9,22 +9,46 @@ Shader "Hidden/BlurEffectConeTap" {
 	};
 	sampler2D _MainTex;
 	half4 _MainTex_TexelSize;
+<<<<<<< HEAD
+=======
+	half4 _MainTex_ST;
+>>>>>>> master
 	half4 _BlurOffsets;
 	v2f vert( appdata_img v ) {
 		v2f o; 
 		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+<<<<<<< HEAD
 		o.uv = v.texcoord - _BlurOffsets.xy * _MainTex_TexelSize.xy; // hack, see BlurEffect.cs for the reason for this. let's make a new blur effect soon
+=======
+
+		o.uv = v.texcoord - _BlurOffsets.xy * _MainTex_TexelSize.xy; // hack, see BlurEffect.cs for the reason for this. let's make a new blur effect soon
+#ifdef UNITY_SINGLE_PASS_STEREO
+		// we need to keep texel size correct after the uv adjustment.
+		o.taps[0] = UnityStereoScreenSpaceUVAdjust(o.uv + _MainTex_TexelSize * _BlurOffsets.xy * (1.0f / _MainTex_ST.xy), _MainTex_ST);
+		o.taps[1] = UnityStereoScreenSpaceUVAdjust(o.uv - _MainTex_TexelSize * _BlurOffsets.xy * (1.0f / _MainTex_ST.xy), _MainTex_ST);
+		o.taps[2] = UnityStereoScreenSpaceUVAdjust(o.uv + _MainTex_TexelSize * _BlurOffsets.xy * half2(1, -1) * (1.0f / _MainTex_ST.xy), _MainTex_ST);
+		o.taps[3] = UnityStereoScreenSpaceUVAdjust(o.uv - _MainTex_TexelSize * _BlurOffsets.xy * half2(1, -1) * (1.0f / _MainTex_ST.xy), _MainTex_ST);
+#else
+>>>>>>> master
 		o.taps[0] = o.uv + _MainTex_TexelSize * _BlurOffsets.xy;
 		o.taps[1] = o.uv - _MainTex_TexelSize * _BlurOffsets.xy;
 		o.taps[2] = o.uv + _MainTex_TexelSize * _BlurOffsets.xy * half2(1,-1);
 		o.taps[3] = o.uv - _MainTex_TexelSize * _BlurOffsets.xy * half2(1,-1);
+<<<<<<< HEAD
+=======
+#endif
+>>>>>>> master
 		return o;
 	}
 	half4 frag(v2f i) : SV_Target {
 		half4 color = tex2D(_MainTex, i.taps[0]);
 		color += tex2D(_MainTex, i.taps[1]);
 		color += tex2D(_MainTex, i.taps[2]);
+<<<<<<< HEAD
 		color += tex2D(_MainTex, i.taps[3]); 
+=======
+		color += tex2D(_MainTex, i.taps[3]);
+>>>>>>> master
 		return color * 0.25;
 	}
 	ENDCG

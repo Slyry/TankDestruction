@@ -35,7 +35,12 @@ Shader "Hidden/BlurAndFlares" {
 	half _Saturation;
 	
 	half4 _MainTex_TexelSize;
+<<<<<<< HEAD
 	
+=======
+	half4 _MainTex_ST;
+
+>>>>>>> master
 	sampler2D _MainTex;
 	sampler2D _NonBlurredTex;
 		
@@ -49,12 +54,21 @@ Shader "Hidden/BlurAndFlares" {
 	v2f_blur vertWithMultiCoords2 (appdata_img v) {
 		v2f_blur o;
 		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+<<<<<<< HEAD
 		o.uv.xy = v.texcoord.xy;
 		o.uv01 =  v.texcoord.xyxy + _Offsets.xyxy * half4(1,1, -1,-1);
 		o.uv23 =  v.texcoord.xyxy + _Offsets.xyxy * half4(1,1, -1,-1) * 2.0;
 		o.uv45 =  v.texcoord.xyxy + _Offsets.xyxy * half4(1,1, -1,-1) * 3.0;
 		o.uv67 =  v.texcoord.xyxy + _Offsets.xyxy * half4(1,1, -1,-1) * 4.0;
 		o.uv67 =  v.texcoord.xyxy + _Offsets.xyxy * half4(1,1, -1,-1) * 5.0;
+=======
+		o.uv.xy = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy, _MainTex_ST);
+		o.uv01 =  UnityStereoScreenSpaceUVAdjust(v.texcoord.xyxy + _Offsets.xyxy * half4(1,1, -1,-1), _MainTex_ST);
+		o.uv23 =  UnityStereoScreenSpaceUVAdjust(v.texcoord.xyxy + _Offsets.xyxy * half4(1,1, -1,-1) * 2.0, _MainTex_ST);
+		o.uv45 =  UnityStereoScreenSpaceUVAdjust(v.texcoord.xyxy + _Offsets.xyxy * half4(1,1, -1,-1) * 3.0, _MainTex_ST);
+		o.uv67 =  UnityStereoScreenSpaceUVAdjust(v.texcoord.xyxy + _Offsets.xyxy * half4(1,1, -1,-1) * 4.0, _MainTex_ST);
+		o.uv67 =  UnityStereoScreenSpaceUVAdjust(v.texcoord.xyxy + _Offsets.xyxy * half4(1,1, -1,-1) * 5.0, _MainTex_ST);
+>>>>>>> master
 		return o;  
 	}
 
@@ -62,6 +76,7 @@ Shader "Hidden/BlurAndFlares" {
 		v2f_opts o;
 		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
 		half b = _StretchWidth;		
+<<<<<<< HEAD
 		o.uv[0] = v.texcoord.xy;
 		o.uv[1] = v.texcoord.xy + b * 2.0 * _Offsets.xy;
 		o.uv[2] = v.texcoord.xy - b * 2.0 * _Offsets.xy;
@@ -69,12 +84,22 @@ Shader "Hidden/BlurAndFlares" {
 		o.uv[4] = v.texcoord.xy - b * 4.0 * _Offsets.xy;
 		o.uv[5] = v.texcoord.xy + b * 6.0 * _Offsets.xy;
 		o.uv[6] = v.texcoord.xy - b * 6.0 * _Offsets.xy;
+=======
+		o.uv[0] = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy, _MainTex_ST);
+		o.uv[1] = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy + b * 2.0 * _Offsets.xy, _MainTex_ST);
+		o.uv[2] = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy - b * 2.0 * _Offsets.xy, _MainTex_ST);
+		o.uv[3] = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy + b * 4.0 * _Offsets.xy, _MainTex_ST);
+		o.uv[4] = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy - b * 4.0 * _Offsets.xy, _MainTex_ST);
+		o.uv[5] = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy + b * 6.0 * _Offsets.xy, _MainTex_ST);
+		o.uv[6] = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy - b * 6.0 * _Offsets.xy, _MainTex_ST);
+>>>>>>> master
 		return o;
 	}
 	
 	v2f_opts vertWithMultiCoords (appdata_img v) {
 		v2f_opts o;
 		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+<<<<<<< HEAD
 		o.uv[0] = v.texcoord.xy;
 		o.uv[1] = v.texcoord.xy + 0.5 * _MainTex_TexelSize.xy * _Offsets.xy;
 		o.uv[2] = v.texcoord.xy - 0.5 * _MainTex_TexelSize.xy * _Offsets.xy;
@@ -82,6 +107,15 @@ Shader "Hidden/BlurAndFlares" {
 		o.uv[4] = v.texcoord.xy - 1.5 * _MainTex_TexelSize.xy * _Offsets.xy;
 		o.uv[5] = v.texcoord.xy + 2.5 * _MainTex_TexelSize.xy * _Offsets.xy;
 		o.uv[6] = v.texcoord.xy - 2.5 * _MainTex_TexelSize.xy * _Offsets.xy;
+=======
+		o.uv[0] = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy, _MainTex_ST);
+		o.uv[1] = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy + 0.5 * _MainTex_TexelSize.xy * _Offsets.xy, _MainTex_ST);
+		o.uv[2] = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy - 0.5 * _MainTex_TexelSize.xy * _Offsets.xy, _MainTex_ST);
+		o.uv[3] = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy + 1.5 * _MainTex_TexelSize.xy * _Offsets.xy, _MainTex_ST);
+		o.uv[4] = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy - 1.5 * _MainTex_TexelSize.xy * _Offsets.xy, _MainTex_ST);
+		o.uv[5] = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy + 2.5 * _MainTex_TexelSize.xy * _Offsets.xy, _MainTex_ST);
+		o.uv[6] = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy - 2.5 * _MainTex_TexelSize.xy * _Offsets.xy, _MainTex_ST);
+>>>>>>> master
 		return o;
 	}	
 
