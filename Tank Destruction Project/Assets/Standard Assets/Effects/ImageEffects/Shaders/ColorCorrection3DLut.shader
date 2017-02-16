@@ -1,7 +1,10 @@
 Shader "Hidden/ColorCorrection3DLut" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "" {}		
+<<<<<<< HEAD
+=======
 		_ClutTex ("-", 3D) = "" {}
+>>>>>>> master
 	}
 
 CGINCLUDE
@@ -16,8 +19,11 @@ struct v2f {
 sampler2D _MainTex;
 sampler3D _ClutTex;
 
+<<<<<<< HEAD
+=======
 half4 _MainTex_ST;
 
+>>>>>>> master
 float _Scale;
 float _Offset;
 
@@ -25,7 +31,11 @@ v2f vert( appdata_img v )
 {
 	v2f o;
 	o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+<<<<<<< HEAD
+	o.uv =  v.texcoord.xy;	
+=======
 	o.uv = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy, _MainTex_ST);
+>>>>>>> master
 	return o;
 } 
 

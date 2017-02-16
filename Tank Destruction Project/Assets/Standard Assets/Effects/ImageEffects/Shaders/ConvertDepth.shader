@@ -15,14 +15,22 @@ Shader "Hidden/ConvertDepth" {
 		
 	sampler2D _MainTex;
 	sampler2D_float _CameraDepthTexture;
+<<<<<<< HEAD
+		
+=======
 	
 	half4 _CameraDepthTexture_ST;
 
+>>>>>>> master
 	v2f vert( appdata_img v ) 
 	{
 		v2f o;
 		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+<<<<<<< HEAD
+		o.uv =  v.texcoord.xy;
+=======
 		o.uv = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy, _CameraDepthTexture_ST);
+>>>>>>> master
 		return o;
 	}
 	

@@ -50,7 +50,10 @@ Shader "Hidden/FXAA III (Console)" {
 		uniform half _EdgeThresholdMin;
 		uniform half _EdgeThreshold;
 		uniform half _EdgeSharpness;
+<<<<<<< HEAD
+=======
 		half4 _MainTex_ST;
+>>>>>>> master
 
 		struct v2f {
 			float4 pos : SV_POSITION;
@@ -94,9 +97,15 @@ Shader "Hidden/FXAA III (Console)" {
 
 // hacky support for NaCl
 #if defined(SHADER_API_GLES) && defined(SHADER_API_DESKTOP)
+<<<<<<< HEAD
+		#define FxaaTexTop(t, p) tex2D(t, p) 
+#else
+		#define FxaaTexTop(t, p) tex2Dlod(t, float4(p, 0.0, 0.0))
+=======
 		#define FxaaTexTop(t, p) tex2D(t, UnityStereoScreenSpaceUVAdjust(p, _MainTex_ST)) 
 #else
 		#define FxaaTexTop(t, p) tex2Dlod(t, float4(UnityStereoScreenSpaceUVAdjust(p, _MainTex_ST), 0.0, 0.0))
+>>>>>>> master
 #endif
 
 		inline half TexLuminance( float2 uv )

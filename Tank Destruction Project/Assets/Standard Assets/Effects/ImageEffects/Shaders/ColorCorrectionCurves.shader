@@ -29,8 +29,12 @@ Shader "Hidden/ColorCorrectionCurves" {
 	
 	float4 _CameraDepthTexture_ST;
 	uniform float4 _MainTex_TexelSize;
+<<<<<<< HEAD
+	
+=======
 	half4 _MainTex_ST;
 
+>>>>>>> master
 	sampler2D _RgbTex;
 	sampler2D _ZCurve; 
 	sampler2D _RgbDepthTex;
@@ -41,7 +45,11 @@ Shader "Hidden/ColorCorrectionCurves" {
 	{
 		v2f o;
 		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+<<<<<<< HEAD
+		o.uv =  v.texcoord.xy;
+=======
 		o.uv = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy, _MainTex_ST);
+>>>>>>> master
 		o.uv2 = TRANSFORM_TEX(v.texcoord, _CameraDepthTexture);
 		
 		#if UNITY_UV_STARTS_AT_TOP
