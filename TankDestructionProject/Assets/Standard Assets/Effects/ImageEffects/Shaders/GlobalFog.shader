@@ -32,6 +32,18 @@ CGINCLUDE
 	uniform float4x4 _FrustumCornersWS;
 	uniform float4 _CameraWS;
 
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/GlobalFog.shader
+=======
+<<<<<<< HEAD
+=======
+	struct appdata_fog
+	{
+		float4 vertex : POSITION;
+		half2 texcoord : TEXCOORD0;
+	};
+
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/GlobalFog.shader
 	struct v2f {
 		float4 pos : SV_POSITION;
 		float2 uv : TEXCOORD0;
@@ -39,10 +51,23 @@ CGINCLUDE
 		float4 interpolatedRay : TEXCOORD2;
 	};
 	
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/GlobalFog.shader
 	v2f vert (appdata_img v)
 	{
 		v2f o;
 		half index = v.vertex.z;
+=======
+<<<<<<< HEAD
+	v2f vert (appdata_img v)
+	{
+		v2f o;
+		half index = v.vertex.z;
+=======
+	v2f vert (appdata_fog v)
+	{
+		v2f o;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/GlobalFog.shader
 		v.vertex.z = 0.1;
 		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
 		o.uv = v.texcoord.xy;
@@ -53,8 +78,19 @@ CGINCLUDE
 			o.uv.y = 1-o.uv.y;
 		#endif				
 		
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/GlobalFog.shader
 		o.interpolatedRay = _FrustumCornersWS[(int)index];
 		o.interpolatedRay.w = index;
+=======
+<<<<<<< HEAD
+		o.interpolatedRay = _FrustumCornersWS[(int)index];
+		o.interpolatedRay.w = index;
+=======
+		int frustumIndex = v.texcoord.x + (2 * o.uv.y);
+		o.interpolatedRay = _FrustumCornersWS[frustumIndex];
+		o.interpolatedRay.w = frustumIndex;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/GlobalFog.shader
 		
 		return o;
 	}
@@ -118,11 +154,27 @@ CGINCLUDE
 
 	half4 ComputeFog (v2f i, bool distance, bool height) : SV_Target
 	{
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/GlobalFog.shader
 		half4 sceneColor = tex2D(_MainTex, i.uv);
 		
 		// Reconstruct world space position & direction
 		// towards this screen pixel.
 		float rawDepth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture,i.uv_depth);
+=======
+<<<<<<< HEAD
+		half4 sceneColor = tex2D(_MainTex, i.uv);
+		
+		// Reconstruct world space position & direction
+		// towards this screen pixel.
+		float rawDepth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture,i.uv_depth);
+=======
+		half4 sceneColor = tex2D(_MainTex, UnityStereoTransformScreenSpaceTex(i.uv));
+		
+		// Reconstruct world space position & direction
+		// towards this screen pixel.
+		float rawDepth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, UnityStereoTransformScreenSpaceTex(i.uv_depth));
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/GlobalFog.shader
 		float dpth = Linear01Depth(rawDepth);
 		float4 wsDir = dpth * i.interpolatedRay;
 		float4 wsPos = _CameraWS + wsDir;
@@ -137,7 +189,15 @@ CGINCLUDE
 		// Compute fog amount
 		half fogFac = ComputeFogFactor (max(0.0,g));
 		// Do not fog skybox
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/GlobalFog.shader
 		if (rawDepth == _DistanceParams.y)
+=======
+<<<<<<< HEAD
+		if (rawDepth == _DistanceParams.y)
+=======
+		if (dpth == _DistanceParams.y)
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/GlobalFog.shader
 			fogFac = 1.0;
 		//return fogFac; // for debugging
 		

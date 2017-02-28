@@ -250,10 +250,23 @@ struct v2f {
 	float2 uv[2] : TEXCOORD0;
 };
 
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/SSAOShader.shader
+=======
+<<<<<<< HEAD
+=======
+sampler2D _MainTex;
+half4 _MainTex_ST;
+
+sampler2D _SSAO;
+half4 _SSAO_ST;
+
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/SSAOShader.shader
 v2f vert (appdata_img v)
 {
 	v2f o;
 	o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/SSAOShader.shader
 	o.uv[0] = MultiplyUV (UNITY_MATRIX_TEXTURE0, v.texcoord);
 	o.uv[1] = MultiplyUV (UNITY_MATRIX_TEXTURE1, v.texcoord);
 	return o;
@@ -261,6 +274,23 @@ v2f vert (appdata_img v)
 
 sampler2D _MainTex;
 sampler2D _SSAO;
+=======
+<<<<<<< HEAD
+	o.uv[0] = MultiplyUV (UNITY_MATRIX_TEXTURE0, v.texcoord);
+	o.uv[1] = MultiplyUV (UNITY_MATRIX_TEXTURE1, v.texcoord);
+	return o;
+}
+
+sampler2D _MainTex;
+sampler2D _SSAO;
+=======
+	o.uv[0] = UnityStereoScreenSpaceUVAdjust(MultiplyUV (UNITY_MATRIX_TEXTURE0, v.texcoord), _MainTex_ST);
+	o.uv[1] = UnityStereoScreenSpaceUVAdjust(MultiplyUV (UNITY_MATRIX_TEXTURE1, v.texcoord), _SSAO_ST);
+	return o;
+}
+
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/SSAOShader.shader
 
 half4 frag( v2f i ) : SV_Target
 {

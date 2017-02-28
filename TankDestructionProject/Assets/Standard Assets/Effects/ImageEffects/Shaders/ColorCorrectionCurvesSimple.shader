@@ -17,12 +17,28 @@ Shader "Hidden/ColorCorrectionCurvesSimple" {
 	sampler2D _MainTex;
 	sampler2D _RgbTex;
 	fixed _Saturation;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ColorCorrectionCurvesSimple.shader
+=======
+<<<<<<< HEAD
+=======
+
+	half4 _MainTex_ST;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ColorCorrectionCurvesSimple.shader
 	
 	v2f vert( appdata_img v ) 
 	{
 		v2f o;
 		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ColorCorrectionCurvesSimple.shader
 		o.uv = v.texcoord.xy;
+=======
+<<<<<<< HEAD
+		o.uv = v.texcoord.xy;
+=======
+		o.uv = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy, _MainTex_ST);
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ColorCorrectionCurvesSimple.shader
 		return o;
 	} 
 	

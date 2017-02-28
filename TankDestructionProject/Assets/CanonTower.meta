@@ -1,8 +1,19 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:TankDestructionProject/Assets/CanonTower.meta
 guid: 5b321f3b33d59054193676fe29b016a2
+=======
+<<<<<<< HEAD
+guid: 0df7b64f0e702f14897580a356feae92
+folderAsset: yes
+timeCreated: 1430408541
+licenseType: Store
+=======
+guid: 92384a6dd94ee524491a583ff7761ed5
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/AudioClips.meta
 folderAsset: yes
 timeCreated: 1487145701
 licenseType: Free
+>>>>>>> master
 DefaultImporter:
   userData: 
   assetBundleName: 

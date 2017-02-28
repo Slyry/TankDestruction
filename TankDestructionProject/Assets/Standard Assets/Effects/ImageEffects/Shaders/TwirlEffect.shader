@@ -14,6 +14,13 @@ CGPROGRAM
 
 uniform sampler2D _MainTex;
 uniform float4 _MainTex_TexelSize;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/TwirlEffect.shader
+=======
+<<<<<<< HEAD
+=======
+half4 _MainTex_ST;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/TwirlEffect.shader
 uniform float4 _CenterRadius;
 uniform float4x4 _RotationMatrix;
 
@@ -40,7 +47,15 @@ float4 frag (v2f i) : SV_Target
 	offset = lerp (distortedOffset, offset, t);
 	offset += _CenterRadius.xy;
 	
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/TwirlEffect.shader
 	return tex2D(_MainTex, offset);
+=======
+<<<<<<< HEAD
+	return tex2D(_MainTex, offset);
+=======
+	return tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(offset, _MainTex_ST));
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/TwirlEffect.shader
 }
 ENDCG
 

@@ -16,9 +16,23 @@ CGPROGRAM
 uniform sampler2D _MainTex;
 uniform sampler2D _RampTex;
 
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ColorCorrectionEffect.shader
 fixed4 frag (v2f_img i) : SV_Target
 {
 	fixed4 orig = tex2D(_MainTex, i.uv);
+=======
+<<<<<<< HEAD
+fixed4 frag (v2f_img i) : SV_Target
+{
+	fixed4 orig = tex2D(_MainTex, i.uv);
+=======
+half4 _MainTex_ST;
+
+fixed4 frag (v2f_img i) : SV_Target
+{
+	fixed4 orig = tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv, _MainTex_ST));
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ColorCorrectionEffect.shader
 	
 	fixed rr = tex2D(_RampTex, orig.rr).r;
 	fixed gg = tex2D(_RampTex, orig.gg).g;

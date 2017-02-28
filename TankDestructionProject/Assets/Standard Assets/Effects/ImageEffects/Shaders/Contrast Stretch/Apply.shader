@@ -25,12 +25,27 @@ struct v2f {
 
 uniform sampler2D _MainTex;
 uniform sampler2D _AdaptTex;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/Contrast Stretch/Apply.shader
+=======
+<<<<<<< HEAD
+=======
+half4 _MainTex_ST;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/Contrast Stretch/Apply.shader
 
 v2f vert (appdata_img v)
 {
 	v2f o;
 	o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/Contrast Stretch/Apply.shader
 	o.uv[0] = MultiplyUV (UNITY_MATRIX_TEXTURE0, v.texcoord);
+=======
+<<<<<<< HEAD
+	o.uv[0] = MultiplyUV (UNITY_MATRIX_TEXTURE0, v.texcoord);
+=======
+	o.uv[0] = MultiplyUV (UNITY_MATRIX_TEXTURE0, UnityStereoScreenSpaceUVAdjust(v.texcoord, _MainTex_ST));
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/Contrast Stretch/Apply.shader
 	o.uv[1] = float2(0.5,0.5);
 	return o;
 }

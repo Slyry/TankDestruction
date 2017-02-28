@@ -56,7 +56,17 @@ Shader "Hidden/NoiseAndGrain" {
 		#else
         		o.uv_screen = v.vertex.xy;
 		#endif
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/NoiseAndGrain.shader
 			
+=======
+<<<<<<< HEAD
+			
+=======
+
+			o.uv_screen = UnityStereoTransformScreenSpaceTex(o.uv_screen);
+
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/NoiseAndGrain.shader
 			// different tiling for 3 channels
 			o.uvRg = v.texcoord.xyxy + v.texcoord1.xyxy * _NoiseTilingPerChannel.rrgg * _NoiseTex_TexelSize.xyxy;
 			o.uvB = v.texcoord.xy + v.texcoord1.xy * _NoiseTilingPerChannel.bb * _NoiseTex_TexelSize.xy;

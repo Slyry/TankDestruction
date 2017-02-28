@@ -15,6 +15,13 @@ Shader "Hidden/ChromaticAberration" {
 	sampler2D _MainTex;
 	
 	float4 _MainTex_TexelSize;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
+=======
+<<<<<<< HEAD
+=======
+	half4 _MainTex_ST;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
 	half _ChromaticAberration;
 	half _AxialAberration;
 	half _Luminance;
@@ -31,10 +38,23 @@ Shader "Hidden/ChromaticAberration" {
 	
 	half4 fragDs(v2f i) : SV_Target 
 	{
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
+=======
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
 		half4 c = tex2D (_MainTex, i.uv.xy + _MainTex_TexelSize.xy * 0.5);
 		c += tex2D (_MainTex, i.uv.xy - _MainTex_TexelSize.xy * 0.5);
 		c += tex2D (_MainTex, i.uv.xy + _MainTex_TexelSize.xy * float2(0.5,-0.5));
 		c += tex2D (_MainTex, i.uv.xy - _MainTex_TexelSize.xy * float2(0.5,-0.5));
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
+=======
+=======
+		half4 c = tex2D (_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv.xy + _MainTex_TexelSize.xy * 0.5, _MainTex_ST));
+		c += tex2D (_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv.xy - _MainTex_TexelSize.xy * 0.5, _MainTex_ST));
+		c += tex2D (_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv.xy + _MainTex_TexelSize.xy * float2(0.5,-0.5), _MainTex_ST));
+		c += tex2D (_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv.xy - _MainTex_TexelSize.xy * float2(0.5,-0.5), _MainTex_ST));
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
 		return c/4.0;
 	}
 
@@ -47,12 +67,29 @@ Shader "Hidden/ChromaticAberration" {
 		half coordDot = dot (coords,coords);
 		
 		half2 uvG = uv - _MainTex_TexelSize.xy * _ChromaticAberration * coords * coordDot;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
+		half4 color = tex2D (_MainTex, uv);
+=======
+<<<<<<< HEAD
 		half4 color = tex2D (_MainTex, uv);
 		#if SHADER_API_D3D9
 			// Work around Cg's code generation bug for D3D9 pixel shaders :(
 			color.g = color.g * 0.0001 + tex2D (_MainTex, uvG).g;
 		#else
 			color.g = tex2D (_MainTex, uvG).g;
+=======
+		half4 color = tex2D (_MainTex, UnityStereoScreenSpaceUVAdjust(uv, _MainTex_ST));
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
+		#if SHADER_API_D3D9
+			// Work around Cg's code generation bug for D3D9 pixel shaders :(
+			color.g = color.g * 0.0001 + tex2D (_MainTex, uvG).g;
+		#else
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
+			color.g = tex2D (_MainTex, uvG).g;
+=======
+			color.g = tex2D (_MainTex, UnityStereoScreenSpaceUVAdjust(uvG, _MainTex_ST)).g;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
 		#endif
 		
 		return color;
@@ -82,7 +119,15 @@ Shader "Hidden/ChromaticAberration" {
 		coords = (coords - 0.5h) * 2.0h;		
 		half coordDot = dot (coords,coords);
 
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
 		half4 color = tex2D (_MainTex, uv);
+=======
+<<<<<<< HEAD
+		half4 color = tex2D (_MainTex, uv);
+=======
+		half4 color = tex2D (_MainTex, UnityStereoScreenSpaceUVAdjust(uv, _MainTex_ST));
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
 		half tangentialStrength = _ChromaticAberration * coordDot * coordDot;
 		half maxOfs = clamp(max(_AxialAberration, tangentialStrength), _BlurDistance.x, _BlurDistance.y);
 
@@ -96,7 +141,15 @@ Shader "Hidden/ChromaticAberration" {
 		for(int l=0; l < SmallDiscKernelSamples; l++)
 		{
 			half2 sampleUV = uv + SmallDiscKernel[l].xy * _MainTex_TexelSize.xy * maxOfs;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
 			half3 tap = tex2D(_MainTex, sampleUV).rgb;
+=======
+<<<<<<< HEAD
+			half3 tap = tex2D(_MainTex, sampleUV).rgb;
+=======
+			half3 tap = tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(sampleUV, _MainTex_ST)).rgb;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
 			blurredTap.rgb += tap;
 		}
 		blurredTap.rgb /= (float)SmallDiscKernelSamples + 0.2h;
@@ -127,7 +180,14 @@ Subshader {
       
       #pragma vertex vert
       #pragma fragment fragDs
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
       
+=======
+<<<<<<< HEAD
+      
+=======
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
       ENDCG
   }
 // 1: simple chrom aberration
@@ -138,7 +198,14 @@ Pass {
       
       #pragma vertex vert
       #pragma fragment frag
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
       
+=======
+<<<<<<< HEAD
+      
+=======
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
       ENDCG
   }
 // 2: simulates more chromatic aberration effects
@@ -149,7 +216,14 @@ Pass {
       
       #pragma vertex vert
       #pragma fragment fragComplex
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
       
+=======
+<<<<<<< HEAD
+      
+=======
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ChromaticAberrationShader.shader
       ENDCG
   }  
 }

@@ -34,6 +34,14 @@
 	float4 _CameraDepthTexture_TexelSize;
 	float4 _VelTex_TexelSize;
 	
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/CameraMotionBlurDX11.shader
+=======
+<<<<<<< HEAD
+=======
+	half4 _MainTex_ST;
+
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/CameraMotionBlurDX11.shader
 	float4x4 _InvViewProj;	// inverse view-projection matrix
 	float4x4 _PrevViewProj;	// previous view-projection matrix
 	float4x4 _ToPrevViewProjCombined; // combined
@@ -51,7 +59,15 @@
 	{
 		v2f o;
 		o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/CameraMotionBlurDX11.shader
 		o.uv = v.texcoord.xy;
+=======
+<<<<<<< HEAD
+		o.uv = v.texcoord.xy;
+=======
+		o.uv = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy, _MainTex_ST);
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/CameraMotionBlurDX11.shader
 		return o;
 	}
 

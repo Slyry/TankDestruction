@@ -15,12 +15,30 @@ Shader "Hidden/ConvertDepth" {
 		
 	sampler2D _MainTex;
 	sampler2D_float _CameraDepthTexture;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ConvertDepth.shader
 		
+=======
+<<<<<<< HEAD
+		
+=======
+	
+	half4 _CameraDepthTexture_ST;
+
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ConvertDepth.shader
 	v2f vert( appdata_img v ) 
 	{
 		v2f o;
 		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ConvertDepth.shader
 		o.uv =  v.texcoord.xy;
+=======
+<<<<<<< HEAD
+		o.uv =  v.texcoord.xy;
+=======
+		o.uv = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy, _CameraDepthTexture_ST);
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ConvertDepth.shader
 		return o;
 	}
 	

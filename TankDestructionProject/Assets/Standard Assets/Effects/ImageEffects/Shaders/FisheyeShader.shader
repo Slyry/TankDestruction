@@ -14,7 +14,16 @@ Shader "Hidden/FisheyeShader" {
 	};
 	
 	sampler2D _MainTex;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/FisheyeShader.shader
 	
+=======
+<<<<<<< HEAD
+	
+=======
+	half4 _MainTex_ST;
+
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/FisheyeShader.shader
 	float2 intensity;
 	
 	v2f vert( appdata_img v ) 
@@ -34,7 +43,15 @@ Shader "Hidden/FisheyeShader" {
 		realCoordOffs.x = (1-coords.y * coords.y) * intensity.y * (coords.x); 
 		realCoordOffs.y = (1-coords.x * coords.x) * intensity.x * (coords.y);
 		
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/FisheyeShader.shader
 		half4 color = tex2D (_MainTex, i.uv - realCoordOffs);	 
+=======
+<<<<<<< HEAD
+		half4 color = tex2D (_MainTex, i.uv - realCoordOffs);	 
+=======
+		half4 color = tex2D (_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv - realCoordOffs, _MainTex_ST));
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/FisheyeShader.shader
 		
 		return color;
 	}

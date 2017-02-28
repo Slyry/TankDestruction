@@ -21,6 +21,14 @@ Shader "Hidden/Vignetting" {
 	half _Blur;
 
 	float4 _MainTex_TexelSize;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/VignettingShader.shader
+=======
+<<<<<<< HEAD
+=======
+	half4  _MainTex_ST;
+	half4  _VignetteTex_ST;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/VignettingShader.shader
 		
 	v2f vert( appdata_img v ) {
 		v2f o;
@@ -40,6 +48,10 @@ Shader "Hidden/Vignetting" {
 		half2 coords = i.uv;
 		half2 uv = i.uv;
 		
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/VignettingShader.shader
+		coords = (coords - 0.5) * 2.0;		
+=======
+<<<<<<< HEAD
 		coords = (coords - 0.5) * 2.0;		
 		half coordDot = dot (coords,coords);
 		half4 color = tex2D (_MainTex, uv);	 
@@ -47,6 +59,20 @@ Shader "Hidden/Vignetting" {
 		float mask = 1.0 - coordDot * _Intensity; 
 		
 		half4 colorBlur = tex2D (_VignetteTex, i.uv2);
+=======
+		coords = (coords - 0.5) * 2.0;
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/VignettingShader.shader
+		half coordDot = dot (coords,coords);
+		half4 color = tex2D (_MainTex, uv);	 
+
+		float mask = 1.0 - coordDot * _Intensity; 
+		
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/VignettingShader.shader
+		half4 colorBlur = tex2D (_VignetteTex, i.uv2);
+=======
+		half4 colorBlur = tex2D (_VignetteTex, UnityStereoScreenSpaceUVAdjust(i.uv2, _VignetteTex_ST));
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/VignettingShader.shader
 		color = lerp (color, colorBlur, saturate (_Blur * coordDot));
 		
 		return color * mask;

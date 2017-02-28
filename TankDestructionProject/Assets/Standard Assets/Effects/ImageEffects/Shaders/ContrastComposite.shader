@@ -18,6 +18,15 @@ Shader "Hidden/ContrastComposite" {
 	sampler2D _MainTexBlurred;
 	
 	float4 _MainTex_TexelSize;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ContrastComposite.shader
+=======
+<<<<<<< HEAD
+=======
+	half4 _MainTex_ST;
+
+	half4 _MainTexBlurred_ST;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ContrastComposite.shader
 	
 	float intensity;
 	float threshold;
@@ -26,8 +35,18 @@ Shader "Hidden/ContrastComposite" {
 		v2f o;
 		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
 		
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ContrastComposite.shader
 		o.uv[0] = v.texcoord.xy;
 		o.uv[1] = v.texcoord.xy;
+=======
+<<<<<<< HEAD
+		o.uv[0] = v.texcoord.xy;
+		o.uv[1] = v.texcoord.xy;
+=======
+		o.uv[0] = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy, _MainTexBlurred_ST);
+		o.uv[1] = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy, _MainTex_ST);
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ContrastComposite.shader
 		#if UNITY_UV_STARTS_AT_TOP
 		if (_MainTex_TexelSize.y < 0)
 			o.uv[0].y = 1-o.uv[0].y;

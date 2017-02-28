@@ -18,15 +18,35 @@ Shader "Hidden/LensFlareCreate" {
 	fixed4 colorD; 
 	
 	sampler2D _MainTex;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/_BloomAndFlares/LensFlareCreate.shader
+=======
+<<<<<<< HEAD
+=======
+	half4     _MainTex_ST;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/_BloomAndFlares/LensFlareCreate.shader
 		
 	v2f vert( appdata_img v ) {
 		v2f o;
 		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
 
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/_BloomAndFlares/LensFlareCreate.shader
+=======
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/_BloomAndFlares/LensFlareCreate.shader
 		o.uv[0] = ( ( v.texcoord.xy - 0.5 ) * -0.85 ) + 0.5;
 		o.uv[1] = ( ( v.texcoord.xy - 0.5 ) * -1.45 ) + 0.5;
 		o.uv[2] = ( ( v.texcoord.xy - 0.5 ) * -2.55 ) + 0.5;
 		o.uv[3] = ( ( v.texcoord.xy - 0.5 ) * -4.15 ) + 0.5;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/_BloomAndFlares/LensFlareCreate.shader
+=======
+=======
+		o.uv[0] = UnityStereoScreenSpaceUVAdjust(( ( v.texcoord.xy - 0.5 ) * -0.85 ) + 0.5, _MainTex_ST);
+		o.uv[1] = UnityStereoScreenSpaceUVAdjust(( ( v.texcoord.xy - 0.5 ) * -1.45 ) + 0.5, _MainTex_ST);
+		o.uv[2] = UnityStereoScreenSpaceUVAdjust(( ( v.texcoord.xy - 0.5 ) * -2.55 ) + 0.5, _MainTex_ST);
+		o.uv[3] = UnityStereoScreenSpaceUVAdjust(( ( v.texcoord.xy - 0.5 ) * -4.15 ) + 0.5, _MainTex_ST);
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/_BloomAndFlares/LensFlareCreate.shader
 		return o;
 	}
 	

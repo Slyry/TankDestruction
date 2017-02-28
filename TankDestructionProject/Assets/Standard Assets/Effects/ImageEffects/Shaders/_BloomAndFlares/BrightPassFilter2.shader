@@ -16,6 +16,13 @@ Shader "Hidden/BrightPassFilter2"
 	};
 	
 	sampler2D _MainTex;	
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/_BloomAndFlares/BrightPassFilter2.shader
+=======
+<<<<<<< HEAD
+=======
+	half4     _MainTex_ST;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/_BloomAndFlares/BrightPassFilter2.shader
 	
 	half4 _Threshhold;
 		
@@ -23,7 +30,15 @@ Shader "Hidden/BrightPassFilter2"
 	{
 		v2f o;
 		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/_BloomAndFlares/BrightPassFilter2.shader
 		o.uv =  v.texcoord.xy;
+=======
+<<<<<<< HEAD
+		o.uv =  v.texcoord.xy;
+=======
+		o.uv = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy, _MainTex_ST);
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/_BloomAndFlares/BrightPassFilter2.shader
 		return o;
 	} 
 	

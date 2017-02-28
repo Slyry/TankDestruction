@@ -1,6 +1,13 @@
 Shader "Hidden/ColorCorrection3DLut" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "" {}		
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ColorCorrection3DLut.shader
+=======
+<<<<<<< HEAD
+=======
+		_ClutTex ("-", 3D) = "" {}
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ColorCorrection3DLut.shader
 	}
 
 CGINCLUDE
@@ -15,6 +22,14 @@ struct v2f {
 sampler2D _MainTex;
 sampler3D _ClutTex;
 
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ColorCorrection3DLut.shader
+=======
+<<<<<<< HEAD
+=======
+half4 _MainTex_ST;
+
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ColorCorrection3DLut.shader
 float _Scale;
 float _Offset;
 
@@ -22,7 +37,15 @@ v2f vert( appdata_img v )
 {
 	v2f o;
 	o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ColorCorrection3DLut.shader
 	o.uv =  v.texcoord.xy;	
+=======
+<<<<<<< HEAD
+	o.uv =  v.texcoord.xy;	
+=======
+	o.uv = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy, _MainTex_ST);
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ColorCorrection3DLut.shader
 	return o;
 } 
 

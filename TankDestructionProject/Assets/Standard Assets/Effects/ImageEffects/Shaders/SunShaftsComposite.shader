@@ -34,6 +34,17 @@ Shader "Hidden/SunShaftsComposite" {
 	uniform half4 _BlurRadius4;
 	uniform half4 _SunPosition;
 	uniform half4 _MainTex_TexelSize;	
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
+=======
+<<<<<<< HEAD
+=======
+	half4 _MainTex_ST;
+	half4 _ColorBuffer_ST;
+	half4 _Skybox_ST;
+	half4 _CameraDepthTexture_ST;
+
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
 
 	#define SAMPLES_FLOAT 6.0f
 	#define SAMPLES_INT 6
@@ -53,22 +64,54 @@ Shader "Hidden/SunShaftsComposite" {
 	}
 		
 	half4 fragScreen(v2f i) : SV_Target { 
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
+		half4 colorA = tex2D (_MainTex, i.uv.xy);
+=======
+<<<<<<< HEAD
 		half4 colorA = tex2D (_MainTex, i.uv.xy);
 		#if UNITY_UV_STARTS_AT_TOP
 		half4 colorB = tex2D (_ColorBuffer, i.uv1.xy);
 		#else
 		half4 colorB = tex2D (_ColorBuffer, i.uv.xy);
+=======
+		half4 colorA = tex2D (_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv.xy, _MainTex_ST));
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
+		#if UNITY_UV_STARTS_AT_TOP
+		half4 colorB = tex2D (_ColorBuffer, i.uv1.xy);
+		#else
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
+		half4 colorB = tex2D (_ColorBuffer, i.uv.xy);
+=======
+		half4 colorB = tex2D (_ColorBuffer, UnityStereoScreenSpaceUVAdjust(i.uv.xy, _ColorBuffer_ST));
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
 		#endif
 		half4 depthMask = saturate (colorB * _SunColor);	
 		return 1.0f - (1.0f-colorA) * (1.0f-depthMask);	
 	}
 
 	half4 fragAdd(v2f i) : SV_Target { 
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
+		half4 colorA = tex2D (_MainTex, i.uv.xy);
+=======
+<<<<<<< HEAD
 		half4 colorA = tex2D (_MainTex, i.uv.xy);
 		#if UNITY_UV_STARTS_AT_TOP
 		half4 colorB = tex2D (_ColorBuffer, i.uv1.xy);
 		#else
 		half4 colorB = tex2D (_ColorBuffer, i.uv.xy);
+=======
+		half4 colorA = tex2D (_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv.xy, _MainTex_ST));
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
+		#if UNITY_UV_STARTS_AT_TOP
+		half4 colorB = tex2D (_ColorBuffer, i.uv1.xy);
+		#else
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
+		half4 colorB = tex2D (_ColorBuffer, i.uv.xy);
+=======
+		half4 colorB = tex2D (_ColorBuffer, UnityStereoScreenSpaceUVAdjust(i.uv.xy, _ColorBuffer_ST));
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
 		#endif
 		half4 depthMask = saturate (colorB * _SunColor);	
 		return colorA + depthMask;	
@@ -89,7 +132,15 @@ Shader "Hidden/SunShaftsComposite" {
 		half4 color = half4(0,0,0,0);
 		for(int j = 0; j < SAMPLES_INT; j++)   
 		{	
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
 			half4 tmpColor = tex2D(_MainTex, i.uv.xy);
+=======
+<<<<<<< HEAD
+			half4 tmpColor = tex2D(_MainTex, i.uv.xy);
+=======
+			half4 tmpColor = tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv.xy, _MainTex_ST));
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
 			color += tmpColor;
 			i.uv.xy += i.blurVector; 	
 		}
@@ -102,12 +153,29 @@ Shader "Hidden/SunShaftsComposite" {
 	
 	half4 frag_depth (v2f i) : SV_Target {
 		#if UNITY_UV_STARTS_AT_TOP
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
+		float depthSample = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv1.xy);
+=======
+<<<<<<< HEAD
 		float depthSample = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv1.xy);
 		#else
 		float depthSample = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv.xy);		
 		#endif
 		
 		half4 tex = tex2D (_MainTex, i.uv.xy);
+=======
+		float depthSample = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, UnityStereoScreenSpaceUVAdjust(i.uv1.xy, _CameraDepthTexture_ST));
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
+		#else
+		float depthSample = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv.xy);		
+		#endif
+		
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
+		half4 tex = tex2D (_MainTex, i.uv.xy);
+=======
+		half4 tex = tex2D (_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv.xy, _MainTex_ST));
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
 		
 		depthSample = Linear01Depth (depthSample);
 		 
@@ -130,12 +198,29 @@ Shader "Hidden/SunShaftsComposite" {
 	
 	half4 frag_nodepth (v2f i) : SV_Target {
 		#if UNITY_UV_STARTS_AT_TOP
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
+		float4 sky = (tex2D (_Skybox, i.uv1.xy));
+=======
+<<<<<<< HEAD
 		float4 sky = (tex2D (_Skybox, i.uv1.xy));
 		#else
 		float4 sky = (tex2D (_Skybox, i.uv.xy));		
 		#endif
 		
 		float4 tex = (tex2D (_MainTex, i.uv.xy));
+=======
+		float4 sky = (tex2D (_Skybox, UnityStereoScreenSpaceUVAdjust(i.uv1.xy, _Skybox_ST)));
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
+		#else
+		float4 sky = (tex2D (_Skybox, i.uv.xy));		
+		#endif
+		
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
+		float4 tex = (tex2D (_MainTex, i.uv.xy));
+=======
+		float4 tex = (tex2D (_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv.xy, _MainTex_ST)));
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/SunShaftsComposite.shader
 		
 		// consider maximum radius
 		#if UNITY_UV_STARTS_AT_TOP

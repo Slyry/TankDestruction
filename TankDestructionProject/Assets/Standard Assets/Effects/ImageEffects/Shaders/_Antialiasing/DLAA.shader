@@ -17,13 +17,28 @@ CGINCLUDE
 
 	uniform sampler2D _MainTex;
 	uniform float4 _MainTex_TexelSize;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/_Antialiasing/DLAA.shader
+=======
+<<<<<<< HEAD
+=======
+	half4 _MainTex_ST;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/_Antialiasing/DLAA.shader
 
 	struct v2f {
 		float4 pos : SV_POSITION;
 		float2 uv : TEXCOORD0;
 	};
 	
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/_Antialiasing/DLAA.shader
 	#define LD( o, dx, dy ) o = tex2D( _MainTex, texCoord + float2( dx, dy ) * _MainTex_TexelSize.xy );
+=======
+<<<<<<< HEAD
+	#define LD( o, dx, dy ) o = tex2D( _MainTex, texCoord + float2( dx, dy ) * _MainTex_TexelSize.xy );
+=======
+	#define LD( o, dx, dy ) o = tex2D( _MainTex, UnityStereoScreenSpaceUVAdjust(texCoord + float2( dx, dy ) * _MainTex_TexelSize.xy, _MainTex_ST) );
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/_Antialiasing/DLAA.shader
 	
 	float GetIntensity( float3 col )
 	{

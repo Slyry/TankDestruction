@@ -22,13 +22,29 @@ Shader "Hidden/ScreenSpaceAmbientObscurance"
 {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
+=======
+<<<<<<< HEAD
+=======
+		_AOTex("", 2D) = "" {}
+		_Rand("", 2D) = "" {}
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 	}
 
 	CGINCLUDE
 
 	#include "UnityCG.cginc"
 
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 	#ifdef SHADER_API_D3D11
+=======
+<<<<<<< HEAD
+	#ifdef SHADER_API_D3D11
+=======
+	#if defined(SHADER_API_D3D11) || defined(SHADER_API_GLCORE)
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 		#define NUM_SAMPLES (15)
 	#else
 		#define NUM_SAMPLES (11)
@@ -42,6 +58,14 @@ Shader "Hidden/ScreenSpaceAmbientObscurance"
 	float _Radius2; // _Radius * _Radius;
 	float _Intensity;
 	float4 _ProjInfo;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
+=======
+<<<<<<< HEAD
+=======
+	float4 _ProjInfoLeft;
+	float4 _ProjInfoRight;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 	float4x4 _ProjectionInv; // ref only
 
 	sampler2D_float _CameraDepthTexture;
@@ -50,6 +74,16 @@ Shader "Hidden/ScreenSpaceAmbientObscurance"
 	sampler2D _MainTex;
 
 	float4 _MainTex_TexelSize;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
+=======
+<<<<<<< HEAD
+=======
+	half4 _MainTex_ST;
+
+	half4 _AOTex_ST;
+	half4 _CameraDepthTexture_ST;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 
 	static const float gaussian[5] = { 0.153170, 0.144893, 0.122649, 0.092902, 0.062970 };  // stddev = 2.0
 
@@ -87,7 +121,20 @@ Shader "Hidden/ScreenSpaceAmbientObscurance"
 	float3 ReconstructCSPosition(float2 S, float z)
 	{
 		float linEyeZ = LinearEyeDepth(z);
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 		return float3(( ( S.xy * _MainTex_TexelSize.zw) * _ProjInfo.xy + _ProjInfo.zw) * linEyeZ, linEyeZ);
+=======
+<<<<<<< HEAD
+		return float3(( ( S.xy * _MainTex_TexelSize.zw) * _ProjInfo.xy + _ProjInfo.zw) * linEyeZ, linEyeZ);
+=======
+#ifdef UNITY_SINGLE_PASS_STEREO
+		float4 projInfo = (unity_StereoEyeIndex == 0) ? _ProjInfoLeft : _ProjInfoRight;
+		return float3((S.xy * projInfo.xy + projInfo.zw) * linEyeZ, linEyeZ);
+#else		
+		return float3(( S.xy * _ProjInfo.xy + _ProjInfo.zw) * linEyeZ, linEyeZ);
+#endif
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 
 		/*
 		// for reference
@@ -146,7 +193,15 @@ Shader "Hidden/ScreenSpaceAmbientObscurance"
 	float3 GetPosition(float2 ssP) {
 		float3 P;
 
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 		P.z = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, ssP.xy);
+=======
+<<<<<<< HEAD
+		P.z = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, ssP.xy);
+=======
+		P.z = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, UnityStereoScreenSpaceUVAdjust(ssP.xy, _CameraDepthTexture_ST));
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 
 		// Offset to pixel center
 		P = ReconstructCSPosition(float2(ssP) /*+ float2(0.5, 0.5)*/, P.z);
@@ -159,7 +214,15 @@ Shader "Hidden/ScreenSpaceAmbientObscurance"
 		float2 ssP = saturate(float2(ssR*unitOffset) + ssC);
 
 		float3 P;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 		P.z = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, ssP.xy);
+=======
+<<<<<<< HEAD
+		P.z = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, ssP.xy);
+=======
+		P.z = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, UnityStereoScreenSpaceUVAdjust(ssP.xy, _CameraDepthTexture_ST));
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 
 		// Offset to pixel center
 		P = ReconstructCSPosition(float2(ssP)/* + float2(0.5, 0.5)*/, P.z);
@@ -209,7 +272,15 @@ Shader "Hidden/ScreenSpaceAmbientObscurance"
 		//packKey(CSZToKey(C.z), bilateralKey);
 
 		float randomPatternRotationAngle = 1.0;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 		#ifdef SHADER_API_D3D11
+=======
+<<<<<<< HEAD
+		#ifdef SHADER_API_D3D11
+=======
+	#if defined(SHADER_API_D3D11) || defined(SHADER_API_GLCORE)
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 			int2 ssCInt = ssC.xy * _MainTex_TexelSize.zw;
 			randomPatternRotationAngle = frac(sin(dot(i.uv, float2(12.9898, 78.233))) * 43758.5453) * 1000.0;
 		#else
@@ -250,19 +321,38 @@ Shader "Hidden/ScreenSpaceAmbientObscurance"
 		float3 C = GetPosition(i.uv.xy);
 
 		packKey(CSZToKey(C.z), fragment.gb);
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 		fragment.ra = tex2D(_MainTex, i.uv.xy).ra;
+=======
+<<<<<<< HEAD
+		fragment.ra = tex2D(_MainTex, i.uv.xy).ra;
+=======
+		fragment.ra = tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv.xy, _MainTex_ST)).ra;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 
 		return fragment;
 	}
 
 	float4 fragApply (v2f i) : SV_Target
 	{
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 		float4 ao = tex2D(_AOTex, i.uv2.xy);
 		return tex2D(_MainTex, i.uv.xy) * ao.rrrr;
+=======
+<<<<<<< HEAD
+		float4 ao = tex2D(_AOTex, i.uv2.xy);
+		return tex2D(_MainTex, i.uv.xy) * ao.rrrr;
+=======
+		float4 ao = tex2D(_AOTex, UnityStereoScreenSpaceUVAdjust(i.uv2.xy, _AOTex_ST));
+		return tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv.xy, _MainTex_ST)) * ao.rrrr;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 	}
 
 	float4 fragApplySoft (v2f i) : SV_Target
 	{
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 		float4 color = tex2D(_MainTex, i.uv.xy);
 
 		float ao = tex2D(_AOTex, i.uv2.xy).r;
@@ -270,6 +360,25 @@ Shader "Hidden/ScreenSpaceAmbientObscurance"
 		ao += tex2D(_AOTex, i.uv2.xy - _MainTex_TexelSize.xy * 0.75).r;
 		ao += tex2D(_AOTex, i.uv2.xy + _MainTex_TexelSize.xy * float2(-0.75,0.75)).r;
 		ao += tex2D(_AOTex, i.uv2.xy - _MainTex_TexelSize.xy * float2(-0.75,0.75)).r;
+=======
+<<<<<<< HEAD
+		float4 color = tex2D(_MainTex, i.uv.xy);
+
+		float ao = tex2D(_AOTex, i.uv2.xy).r;
+		ao += tex2D(_AOTex, i.uv2.xy + _MainTex_TexelSize.xy * 0.75).r;
+		ao += tex2D(_AOTex, i.uv2.xy - _MainTex_TexelSize.xy * 0.75).r;
+		ao += tex2D(_AOTex, i.uv2.xy + _MainTex_TexelSize.xy * float2(-0.75,0.75)).r;
+		ao += tex2D(_AOTex, i.uv2.xy - _MainTex_TexelSize.xy * float2(-0.75,0.75)).r;
+=======
+		float4 color = tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv.xy, _MainTex_ST));
+
+		float ao = tex2D(_AOTex, UnityStereoScreenSpaceUVAdjust(i.uv2.xy, _AOTex_ST)).r;
+		ao += tex2D(_AOTex, UnityStereoScreenSpaceUVAdjust(i.uv2.xy, _AOTex_ST) + _MainTex_TexelSize.xy * 0.75).r;
+		ao += tex2D(_AOTex, UnityStereoScreenSpaceUVAdjust(i.uv2.xy, _AOTex_ST) - _MainTex_TexelSize.xy * 0.75).r;
+		ao += tex2D(_AOTex, UnityStereoScreenSpaceUVAdjust(i.uv2.xy, _AOTex_ST) + _MainTex_TexelSize.xy * float2(-0.75,0.75)).r;
+		ao += tex2D(_AOTex, UnityStereoScreenSpaceUVAdjust(i.uv2.xy, _AOTex_ST) - _MainTex_TexelSize.xy * float2(-0.75,0.75)).r;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 
 		return color * float4(ao,ao,ao,5)/5;
 	}
@@ -278,9 +387,21 @@ Shader "Hidden/ScreenSpaceAmbientObscurance"
 	{
 		float4 fragment = float4(1,1,1,1);
 
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 		float2 ssC = i.uv.xy;
 
 		float4 temp = tex2Dlod(_MainTex, float4(i.uv.xy,0,0));
+=======
+<<<<<<< HEAD
+		float2 ssC = i.uv.xy;
+
+		float4 temp = tex2Dlod(_MainTex, float4(i.uv.xy,0,0));
+=======
+		float2 ssC = UnityStereoScreenSpaceUVAdjust(i.uv.xy, _MainTex_ST);
+
+		float4 temp = tex2Dlod(_MainTex, float4(UnityStereoScreenSpaceUVAdjust(i.uv.xy, _MainTex_ST),0,0));
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/ScreenSpaceAmbientObscurance.shader
 
 		float2 passthrough2 = temp.gb;
 		float key = UnpackKey(passthrough2);

@@ -22,6 +22,13 @@
 		_NoiseTex ("-", 2D) = "grey" {}
 		_VelTex ("-", 2D) = "black" {}
 		_NeighbourMaxTex ("-", 2D) = "black" {}
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/CameraMotionBlur.shader
+=======
+<<<<<<< HEAD
+=======
+		_TileTexDebug ("-", 2D) = "" {}
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/CameraMotionBlur.shader
 	}
 
 	CGINCLUDE
@@ -69,9 +76,27 @@
 	float4 _CameraDepthTexture_TexelSize;
 	float4 _VelTex_TexelSize;
 	
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/CameraMotionBlur.shader
 	float4x4 _InvViewProj;	// inverse view-projection matrix
 	float4x4 _PrevViewProj;	// previous view-projection matrix
 	float4x4 _ToPrevViewProjCombined; // combined
+=======
+<<<<<<< HEAD
+	float4x4 _InvViewProj;	// inverse view-projection matrix
+	float4x4 _PrevViewProj;	// previous view-projection matrix
+	float4x4 _ToPrevViewProjCombined; // combined
+=======
+	half4 _MainTex_ST;
+	half4 _CameraDepthTexture_ST;
+	half4 _VelTex_ST;
+
+	float4x4 _InvViewProj;	// inverse view-projection matrix
+	float4x4 _PrevViewProj;	// previous view-projection matrix
+	float4x4 _ToPrevViewProjCombined; // combined
+	float4x4 _StereoToPrevViewProjCombined0; // combined stereo versions.
+	float4x4 _StereoToPrevViewProjCombined1; // combined stereo versions.
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/CameraMotionBlur.shader
 
 	float _Jitter;
 	
@@ -89,9 +114,30 @@
 	{
 		v2f o;
 		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/CameraMotionBlur.shader
 		o.uv = v.texcoord.xy;
 		return o;
 	}
+=======
+<<<<<<< HEAD
+		o.uv = v.texcoord.xy;
+		return o;
+	}
+=======
+		o.uv = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy, _MainTex_ST);
+		return o;
+	}
+
+	float4x4 GetPrevViewProjCombined()
+	{
+#ifdef UNITY_SINGLE_PASS_STEREO
+		return unity_StereoEyeIndex == 0 ? _StereoToPrevViewProjCombined0 : _StereoToPrevViewProjCombined1;
+#else
+		return _ToPrevViewProjCombined;
+#endif
+	}
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/CameraMotionBlur.shader
 	
 	float4 CameraVelocity(v2f i) : SV_Target
 	{
@@ -109,7 +155,15 @@
 		float3 clipPos = float3(i.uv.x*2.0-1.0, (i.uv.y)*2.0-1.0, d);
 
 		// only 1 matrix mul:
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/CameraMotionBlur.shader
 		float4 prevClipPos = mul(_ToPrevViewProjCombined, float4(clipPos, 1.0));
+=======
+<<<<<<< HEAD
+		float4 prevClipPos = mul(_ToPrevViewProjCombined, float4(clipPos, 1.0));
+=======
+		float4 prevClipPos = mul(GetPrevViewProjCombined(), float4(clipPos, 1.0));
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/CameraMotionBlur.shader
 		prevClipPos.xyz /= prevClipPos.w;
 
 		/*
@@ -327,7 +381,15 @@
 		float4 sum = cx * weight;
 		
 		float4 jitteredDir = vn.xyxy + noise.xyyz;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/CameraMotionBlur.shader
 #ifdef SHADER_API_D3D11
+=======
+<<<<<<< HEAD
+#ifdef SHADER_API_D3D11
+=======
+#if defined(SHADER_API_D3D11) || defined(SHADER_API_GLCORE)
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/CameraMotionBlur.shader
 		jitteredDir = max(abs(jitteredDir.xyxy), _MainTex_TexelSize.xyxy * _MaxVelocity * 0.5) * sign(jitteredDir.xyxy)  * float4(1,1,-1,-1);
 #else
 		jitteredDir = max(abs(jitteredDir.xyxy), _MainTex_TexelSize.xyxy * _MaxVelocity * 0.15) * sign(jitteredDir.xyxy)  * float4(1,1,-1,-1);
@@ -357,7 +419,15 @@
 			sum += cy * alphay;
 			weight += alphay;
 
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/CameraMotionBlur.shader
 #ifdef SHADER_API_D3D11
+=======
+<<<<<<< HEAD
+#ifdef SHADER_API_D3D11
+=======
+#if defined(SHADER_API_D3D11) || defined(SHADER_API_GLCORE)
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/CameraMotionBlur.shader
 
 			vy = tex2Dlod(_VelTex, float4(yf.zw,0,0)).xy;
 

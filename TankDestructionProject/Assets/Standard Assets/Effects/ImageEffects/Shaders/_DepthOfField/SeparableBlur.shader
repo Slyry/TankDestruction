@@ -19,16 +19,39 @@ Shader "Hidden/SeparableBlur" {
 	float4 offsets;
 	
 	sampler2D _MainTex;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/_DepthOfField/SeparableBlur.shader
+=======
+<<<<<<< HEAD
+=======
+	half4 _MainTex_ST;
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/_DepthOfField/SeparableBlur.shader
 		
 	v2f vert (appdata_img v) {
 		v2f o;
 		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
 
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/_DepthOfField/SeparableBlur.shader
 		o.uv.xy = v.texcoord.xy;
 
 		o.uv01 =  v.texcoord.xyxy + offsets.xyxy * float4(1,1, -1,-1);
 		o.uv23 =  v.texcoord.xyxy + offsets.xyxy * float4(1,1, -1,-1) * 2.0;
 		o.uv45 =  v.texcoord.xyxy + offsets.xyxy * float4(1,1, -1,-1) * 3.0;
+=======
+<<<<<<< HEAD
+		o.uv.xy = v.texcoord.xy;
+
+		o.uv01 =  v.texcoord.xyxy + offsets.xyxy * float4(1,1, -1,-1);
+		o.uv23 =  v.texcoord.xyxy + offsets.xyxy * float4(1,1, -1,-1) * 2.0;
+		o.uv45 =  v.texcoord.xyxy + offsets.xyxy * float4(1,1, -1,-1) * 3.0;
+=======
+		o.uv.xy = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy, _MainTex_ST);
+
+		o.uv01 = UnityStereoScreenSpaceUVAdjust(v.texcoord.xyxy + offsets.xyxy * float4(1,1, -1,-1), _MainTex_ST);
+		o.uv23 = UnityStereoScreenSpaceUVAdjust(v.texcoord.xyxy + offsets.xyxy * float4(1,1, -1,-1) * 2.0, _MainTex_ST);
+		o.uv45 = UnityStereoScreenSpaceUVAdjust(v.texcoord.xyxy + offsets.xyxy * float4(1,1, -1,-1) * 3.0, _MainTex_ST);
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/_DepthOfField/SeparableBlur.shader
 
 		return o;  
 	}
@@ -42,7 +65,15 @@ Shader "Hidden/SeparableBlur" {
 		color += 0.10 * tex2D (_MainTex, i.uv23.xy);
 		color += 0.10 * tex2D (_MainTex, i.uv23.zw);
 		color += 0.05 * tex2D (_MainTex, i.uv45.xy);
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/_DepthOfField/SeparableBlur.shader
 		color += 0.05 * tex2D (_MainTex, i.uv45.zw);	
+=======
+<<<<<<< HEAD
+		color += 0.05 * tex2D (_MainTex, i.uv45.zw);	
+=======
+		color += 0.05 * tex2D (_MainTex, i.uv45.zw);
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/_DepthOfField/SeparableBlur.shader
 		
 		return color;
 	} 

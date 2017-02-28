@@ -115,6 +115,14 @@ CGPROGRAM
 /*--------------------------------------------------------------------------*/
 #define FxaaToFloat3(a) FxaaFloat3((a), (a), (a))
 /*--------------------------------------------------------------------------*/
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/_Antialiasing/FXAAPreset3.shader
+=======
+<<<<<<< HEAD
+=======
+half4 _MainTex_ST;
+
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/_Antialiasing/FXAAPreset3.shader
 float4 FxaaTexLod0(FxaaTex tex, float2 pos) {
     #if FXAA_GLSL_120
         return texture2DLod(tex, pos.xy, 0.0);
@@ -123,10 +131,24 @@ float4 FxaaTexLod0(FxaaTex tex, float2 pos) {
         return textureLod(tex, pos.xy, 0.0);
     #endif
     #if FXAA_HLSL_3
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/_Antialiasing/FXAAPreset3.shader
         return tex2Dlod(tex, float4(pos.xy, 0.0, 0.0)); 
     #endif
     #if FXAA_HLSL_4
         return tex.tex.SampleLevel(tex.smpl, pos.xy, 0.0);
+=======
+<<<<<<< HEAD
+        return tex2Dlod(tex, float4(pos.xy, 0.0, 0.0)); 
+    #endif
+    #if FXAA_HLSL_4
+        return tex.tex.SampleLevel(tex.smpl, pos.xy, 0.0);
+=======
+        return tex2Dlod(tex, float4(UnityStereoScreenSpaceUVAdjust(pos.xy, _MainTex_ST), 0.0, 0.0));
+    #endif
+    #if FXAA_HLSL_4
+        return tex.tex.SampleLevel(tex.smpl, UnityStereoScreenSpaceUVAdjust(pos.xy, _MainTex_ST), 0.0);
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/_Antialiasing/FXAAPreset3.shader
     #endif
 }
 /*--------------------------------------------------------------------------*/
@@ -138,10 +160,24 @@ float4 FxaaTexGrad(FxaaTex tex, float2 pos, float2 grad) {
         return textureGrad(tex, pos.xy, grad, grad);
     #endif
     #if FXAA_HLSL_3
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/_Antialiasing/FXAAPreset3.shader
         return tex2Dgrad(tex, pos.xy, grad, grad); 
     #endif
     #if FXAA_HLSL_4
         return tex.tex.SampleGrad(tex.smpl, pos.xy, grad, grad);
+=======
+<<<<<<< HEAD
+        return tex2Dgrad(tex, pos.xy, grad, grad); 
+    #endif
+    #if FXAA_HLSL_4
+        return tex.tex.SampleGrad(tex.smpl, pos.xy, grad, grad);
+=======
+        return tex2Dgrad(tex, UnityStereoScreenSpaceUVAdjust(pos.xy, _MainTex_ST), grad, grad);
+    #endif
+    #if FXAA_HLSL_4
+        return tex.tex.SampleGrad(tex.smpl, UnityStereoScreenSpaceUVAdjust(pos.xy, _MainTex_ST), grad, grad);
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/_Antialiasing/FXAAPreset3.shader
     #endif
 }
 /*--------------------------------------------------------------------------*/
@@ -153,10 +189,24 @@ float4 FxaaTexOff(FxaaTex tex, float2 pos, int2 off, float2 rcpFrame) {
         return textureLodOffset(tex, pos.xy, 0.0, off.xy);
     #endif
     #if FXAA_HLSL_3
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/_Antialiasing/FXAAPreset3.shader
         return tex2Dlod(tex, float4(pos.xy + (off * rcpFrame), 0, 0)); 
     #endif
     #if FXAA_HLSL_4
         return tex.tex.SampleLevel(tex.smpl, pos.xy, 0.0, off.xy);
+=======
+<<<<<<< HEAD
+        return tex2Dlod(tex, float4(pos.xy + (off * rcpFrame), 0, 0)); 
+    #endif
+    #if FXAA_HLSL_4
+        return tex.tex.SampleLevel(tex.smpl, pos.xy, 0.0, off.xy);
+=======
+        return tex2Dlod(tex, float4(UnityStereoScreenSpaceUVAdjust(pos.xy + (off * rcpFrame), _MainTex_ST), 0, 0));
+    #endif
+    #if FXAA_HLSL_4
+        return tex.tex.SampleLevel(tex.smpl, UnityStereoScreenSpaceUVAdjust(pos.xy, _MainTex_ST), 0.0, off.xy);
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/_Antialiasing/FXAAPreset3.shader
     #endif
 }
 

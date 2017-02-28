@@ -1,8 +1,19 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:TankDestructionProject/Assets/CanonTower/FBX/Materials.meta
 guid: 8d84b14a8f1f4574a863c2f6586f2a70
+=======
+<<<<<<< HEAD
+guid: e5dbc7bfeb0203344a6c08c8ed7678bc
+folderAsset: yes
+timeCreated: 1426689574
+licenseType: Store
+=======
+guid: 98b629dfd6dd22647b79dfa8af4e2d42
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Materials.meta
 folderAsset: yes
 timeCreated: 1487145703
 licenseType: Free
+>>>>>>> master
 DefaultImporter:
   userData: 
   assetBundleName: 

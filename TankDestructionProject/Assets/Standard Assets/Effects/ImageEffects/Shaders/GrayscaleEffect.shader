@@ -16,10 +16,25 @@ CGPROGRAM
 uniform sampler2D _MainTex;
 uniform sampler2D _RampTex;
 uniform half _RampOffset;
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/GrayscaleEffect.shader
 
 fixed4 frag (v2f_img i) : SV_Target
 {
 	fixed4 original = tex2D(_MainTex, i.uv);
+=======
+<<<<<<< HEAD
+
+fixed4 frag (v2f_img i) : SV_Target
+{
+	fixed4 original = tex2D(_MainTex, i.uv);
+=======
+half4 _MainTex_ST;
+
+fixed4 frag (v2f_img i) : SV_Target
+{
+	fixed4 original = tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv, _MainTex_ST));
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/GrayscaleEffect.shader
 	fixed grayscale = Luminance(original.rgb);
 	half2 remap = half2 (grayscale + _RampOffset, .5);
 	fixed4 output = tex2D(_RampTex, remap);

@@ -29,11 +29,27 @@ uniform float4 _GrainOffsetScale;
 uniform float4 _ScratchOffsetScale;
 uniform fixed4 _Intensity; // x=grain, y=scratch
 
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/NoiseEffectShaderRGB.shader
+=======
+<<<<<<< HEAD
+=======
+half4 _MainTex_ST;
+
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/NoiseEffectShaderRGB.shader
 v2f vert (appdata_img v)
 {
 	v2f o;
 	o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+<<<<<<< HEAD:TankDestructionProject/Assets/Standard Assets/Effects/ImageEffects/Shaders/NoiseEffectShaderRGB.shader
 	o.uv = MultiplyUV (UNITY_MATRIX_TEXTURE0, v.texcoord);
+=======
+<<<<<<< HEAD
+	o.uv = MultiplyUV (UNITY_MATRIX_TEXTURE0, v.texcoord);
+=======
+	o.uv = UnityStereoScreenSpaceUVAdjust(MultiplyUV (UNITY_MATRIX_TEXTURE0, v.texcoord), _MainTex_ST);
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master:Tank Destruction Project/Assets/Standard Assets/Effects/ImageEffects/Shaders/NoiseEffectShaderRGB.shader
 	o.uvg = v.texcoord.xy * _GrainOffsetScale.zw + _GrainOffsetScale.xy;
 	o.uvs = v.texcoord.xy * _ScratchOffsetScale.zw + _ScratchOffsetScale.xy;
 	return o;
